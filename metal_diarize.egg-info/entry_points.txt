@@ -1,2 +1,0 @@
-[console_scripts]
-metal-diarize = metal_diarize:main
