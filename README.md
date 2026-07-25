@@ -1,4 +1,4 @@
-# metal-diarize
+# crosstalk
 
 **Speaker-diarized transcription that's actually fast on Apple Silicon.**
 
@@ -21,7 +21,7 @@ whisper.cpp (Metal GPU)          pyannote community-1 (MPS GPU)
 | Pipeline | Time |
 |---|---|
 | WhisperX (large-v3, CPU) | 21+ min (killed before finishing) |
-| **metal-diarize** (large-v3-turbo Metal + pyannote MPS) | **~3 min** |
+| **crosstalk** (large-v3-turbo Metal + pyannote MPS) | **~3 min** |
 
 Output looks like:
 
@@ -36,19 +36,19 @@ Output looks like:
 ### Homebrew (recommended)
 
 ```bash
-brew tap semenov/metal-diarize
-brew install metal-diarize
+brew tap semenov/crosstalk
+brew install crosstalk
 ```
 
 This pulls in `ffmpeg` and `whisper-cpp` automatically and installs the
-`metal-diarize` command. The whisper model is downloaded on first use and
-cached in `~/Library/Caches/metal-diarize/` — no manual model setup.
+`crosstalk` command. The whisper model is downloaded on first use and
+cached in `~/Library/Caches/crosstalk/` — no manual model setup.
 
 ### pipx (alternative)
 
 ```bash
 brew install ffmpeg whisper-cpp        # system deps
-pipx install git+https://github.com/semenov/metal-diarize
+pipx install git+https://github.com/semenov/crosstalk
 ```
 
 ### Hugging Face token (one-time, free)
@@ -62,16 +62,16 @@ The diarization model is gated. Once:
 ## Use
 
 ```bash
-metal-diarize interview.mp3                 # any ffmpeg-readable format
-metal-diarize debate.wav --speakers 2      # exact speaker count, if known
-metal-diarize talk.mp4 --language ru        # non-English audio
-metal-diarize ep1.m4a --model medium -o ep1.txt   # smaller/faster model
+crosstalk interview.mp3                 # any ffmpeg-readable format
+crosstalk debate.wav --speakers 2      # exact speaker count, if known
+crosstalk talk.mp4 --language ru        # non-English audio
+crosstalk ep1.m4a --model medium -o ep1.txt   # smaller/faster model
 ```
 
 `--model` accepts a name (`large-v3-turbo` default, `large-v3`, `medium`, `small`,
 `base` — auto-downloaded and cached) or a path to your own ggml `.bin`.
 
-Output: `<input>.diarized.txt` with `[MM:SS] SPEAKER_XX:` turn labels.
+Output: `<input>.crosstalk.txt` with `[MM:SS] SPEAKER_XX:` turn labels.
 Speaker labels are anonymous (`SPEAKER_00`, `SPEAKER_01`, ...) — mapping them to real
 names is up to you (usually obvious from the first few turns).
 

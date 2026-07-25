@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""metal-diarize: speaker-diarized transcription, fast on Apple Silicon.
+"""crosstalk: speaker-diarized transcription, fast on Apple Silicon.
 
 Hybrid pipeline:
   1. whisper.cpp (Metal GPU)      -> transcript segments with timestamps
@@ -7,8 +7,8 @@ Hybrid pipeline:
   3. merge by timestamp overlap   -> speaker-labeled transcript
 
 Usage:
-  metal-diarize interview.mp3 --speakers 2
-  metal-diarize talk.wav --language ru --model ~/models/ggml-medium.bin
+  crosstalk interview.mp3 --speakers 2
+  crosstalk talk.wav --language ru --model ~/models/ggml-medium.bin
 """
 import argparse
 import json
@@ -39,7 +39,7 @@ def die(msg: str) -> None:
 
 
 def cache_dir() -> Path:
-    d = Path.home() / "Library" / "Caches" / "metal-diarize"
+    d = Path.home() / "Library" / "Caches" / "crosstalk"
     d.mkdir(parents=True, exist_ok=True)
     return d
 
@@ -202,7 +202,7 @@ def main() -> None:
     p.add_argument("--max-speakers", type=int, default=8)
     p.add_argument("--hf-token", default=None, help="Hugging Face token (default: $HF_TOKEN or ~/.hf_token)")
     p.add_argument("-o", "--output", type=Path, default=None,
-                   help="output file (default: <input>.diarized.txt)")
+                   help="output file (default: <input>.crosstalk.txt)")
     args = p.parse_args()
 
     if not args.audio.exists():
@@ -215,7 +215,7 @@ def main() -> None:
         args.min_speakers = args.max_speakers = args.speakers
     token = read_hf_token(args.hf_token)
     model = resolve_model(args.model)
-    out = args.output or args.audio.with_suffix(".diarized.txt")
+    out = args.output or args.audio.with_suffix(".crosstalk.txt")
 
     t0 = time.time()
     with tempfile.TemporaryDirectory() as td:
