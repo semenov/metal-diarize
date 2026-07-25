@@ -21,7 +21,7 @@ prompt = green + "$" + rst + " "
 
 events = [
     [0.4,  prompt],
-    [1.0,  "crosstalk interview.mp3 --speakers 2"],
+    [1.0,  "crosstalk interview.mp3"],
     [1.7,  "\r\n"],
     [2.0,  "[  0.1s] converted to 16 kHz WAV\r\n"],
     [3.6,  "[  8.4s] transcribed: 41 segments " + dim + "(whisper.cpp / Metal)" + rst + "\r\n"],

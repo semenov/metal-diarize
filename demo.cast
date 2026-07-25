@@ -1,6 +1,6 @@
 {"version": 2, "width": 92, "height": 20, "title": "crosstalk", "env": {"TERM": "xterm-256color"}}
 [0.4, "o", "\u001b[1;32m$\u001b[0m "]
-[1.0, "o", "crosstalk interview.mp3 --speakers 2"]
+[1.0, "o", "crosstalk interview.mp3"]
 [1.7, "o", "\r\n"]
 [2.0, "o", "[  0.1s] converted to 16 kHz WAV\r\n"]
 [3.6, "o", "[  8.4s] transcribed: 41 segments \u001b[2m(whisper.cpp / Metal)\u001b[0m\r\n"]
