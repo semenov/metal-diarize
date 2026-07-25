@@ -1,3 +1,12 @@
+"""Generates demo.cast, the source for the README's demo.gif.
+
+Regenerate the GIF after editing:
+    python3 gen_cast.py
+    agg --theme monokai --font-size 26 --cols 92 --rows 20 demo.cast demo.gif
+
+(agg: `brew install agg`. To capture a real run instead of this scripted one:
+`brew install asciinema` then `asciinema rec demo.cast -c "crosstalk file.mp3"`.)
+"""
 import json
 
 E = "\x1b"  # ESC; json.dumps emits it as the valid  escape

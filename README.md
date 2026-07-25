@@ -19,7 +19,7 @@ brew install crosstalk
 
 export HF_TOKEN=hf_your_token     # free token — see "Hugging Face token" below
 
-crosstalk interview.mp3 --speakers 2
+crosstalk interview.mp3
 ```
 
 That's it. You get `interview.crosstalk.txt`:
@@ -130,6 +130,22 @@ Speakers come out labeled `SPEAKER_00`, `SPEAKER_01`, … — anonymous, but who
 usually obvious from the first few lines. (Diarization tells you *how many* distinct
 voices and *when* each talks; putting real names on them is a quick find-and-replace.)
 
+### Transcribe a YouTube video
+
+Grab the audio with [yt-dlp](https://github.com/yt-dlp/yt-dlp), then point crosstalk at it:
+
+```bash
+brew install yt-dlp
+
+yt-dlp -f "bestaudio[ext=m4a]/bestaudio" -o "interview.m4a" \
+  "https://www.youtube.com/watch?v=VIDEO_ID"
+
+crosstalk interview.m4a --speakers 2
+```
+
+Works the same for podcasts, panels, and lectures — anything yt-dlp can download,
+crosstalk can transcribe.
+
 ---
 
 ## Install without Homebrew
@@ -139,19 +155,6 @@ Prefer `pipx`? You just need the two system tools first:
 ```bash
 brew install ffmpeg whisper-cpp
 pipx install git+https://github.com/semenov/crosstalk
-```
-
----
-
-## Record your own demo
-
-The GIF above was made with [asciinema](https://asciinema.org) +
-[agg](https://github.com/asciinema/agg). To capture a real run on your machine:
-
-```bash
-brew install asciinema agg
-asciinema rec demo.cast -c "crosstalk interview.mp3 --speakers 2"
-agg --theme monokai demo.cast demo.gif
 ```
 
 ---
