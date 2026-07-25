@@ -1,0 +1,10 @@
+LICENSE
+README.md
+metal_diarize.py
+pyproject.toml
+metal_diarize.egg-info/PKG-INFO
+metal_diarize.egg-info/SOURCES.txt
+metal_diarize.egg-info/dependency_links.txt
+metal_diarize.egg-info/entry_points.txt
+metal_diarize.egg-info/requires.txt
+metal_diarize.egg-info/top_level.txt

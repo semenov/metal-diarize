@@ -1,3 +1,19 @@
+Metadata-Version: 2.4
+Name: metal-diarize
+Version: 0.1.0
+Summary: Fast speaker-diarized transcription on Apple Silicon (whisper.cpp Metal + pyannote MPS)
+Author: Vlad Semenov
+License: MIT
+Project-URL: Homepage, https://github.com/semenov/metal-diarize
+Keywords: whisper,diarization,speaker-diarization,apple-silicon,metal,pyannote,transcription
+Requires-Python: <3.13,>=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyannote.audio>=4.0
+Requires-Dist: torch>=2.0
+Requires-Dist: numpy
+Dynamic: license-file
+
 # metal-diarize
 
 **Speaker-diarized transcription that's actually fast on Apple Silicon.**
@@ -33,22 +49,16 @@ Output looks like:
 
 ## Install
 
-### Homebrew (recommended)
-
 ```bash
-brew tap semenov/metal-diarize
-brew install metal-diarize
-```
+# 1. System tools (transcription + audio conversion)
+brew install ffmpeg whisper-cpp
 
-This pulls in `ffmpeg` and `whisper-cpp` automatically and installs the
-`metal-diarize` command. The whisper model is downloaded on first use and
-cached in `~/Library/Caches/metal-diarize/` — no manual model setup.
+# 2. Python deps (diarization) — needs Python 3.10–3.12
+uv venv --python 3.12 .venv && source .venv/bin/activate
+uv pip install pyannote.audio torch numpy
 
-### pipx (alternative)
-
-```bash
-brew install ffmpeg whisper-cpp        # system deps
-pipx install git+https://github.com/semenov/metal-diarize
+# 3. A whisper model
+curl -LO https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo.bin
 ```
 
 ### Hugging Face token (one-time, free)
@@ -62,14 +72,11 @@ The diarization model is gated. Once:
 ## Use
 
 ```bash
-metal-diarize interview.mp3                 # any ffmpeg-readable format
-metal-diarize debate.wav --speakers 2      # exact speaker count, if known
-metal-diarize talk.mp4 --language ru        # non-English audio
-metal-diarize ep1.m4a --model medium -o ep1.txt   # smaller/faster model
+python metal_diarize.py interview.mp3                      # any ffmpeg-readable format
+python metal_diarize.py debate.wav --speakers 2            # exact speaker count, if known
+python metal_diarize.py talk.mp4 --language ru             # non-English audio
+python metal_diarize.py ep1.m4a --model ~/models/ggml-medium.bin -o ep1.txt
 ```
-
-`--model` accepts a name (`large-v3-turbo` default, `large-v3`, `medium`, `small`,
-`base` — auto-downloaded and cached) or a path to your own ggml `.bin`.
 
 Output: `<input>.diarized.txt` with `[MM:SS] SPEAKER_XX:` turn labels.
 Speaker labels are anonymous (`SPEAKER_00`, `SPEAKER_01`, ...) — mapping them to real

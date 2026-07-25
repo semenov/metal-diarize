@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "metal-diarize"
+version = "0.1.0"
+description = "Fast speaker-diarized transcription on Apple Silicon (whisper.cpp Metal + pyannote MPS)"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Vlad Semenov" }]
+keywords = ["whisper", "diarization", "speaker-diarization", "apple-silicon", "metal", "pyannote", "transcription"]
+dependencies = [
+    "pyannote.audio>=4.0",
+    "torch>=2.0",
+    "numpy",
+]
+
+[project.urls]
+Homepage = "https://github.com/semenov/metal-diarize"
+
+[project.scripts]
+metal-diarize = "metal_diarize:main"
+
+[tool.setuptools]
+py-modules = ["metal_diarize"]
