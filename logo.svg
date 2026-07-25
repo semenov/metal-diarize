@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="200" viewBox="0 0 720 200" role="img" aria-label="crosstalk logo">
+  <style>
+    .word { font: 700 64px ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace; letter-spacing: -1px; }
+    .w-main { fill: #e8e6e0; }
+    .cyan { stroke: #66d9ce; }
+    .mag  { stroke: #c792ea; }
+    @media (prefers-color-scheme: light) {
+      .w-main { fill: #24251f; }
+    }
+  </style>
+
+  <!-- two voices: waveforms that cross each other -->
+  <g fill="none" stroke-width="7" stroke-linecap="round">
+    <path class="cyan"
+          d="M 30 100
+             C 55 100, 55 52, 80 52
+             S 105 148, 130 148
+             S 155 68, 180 68
+             S 205 124, 230 124" />
+    <path class="mag"
+          d="M 30 100
+             C 55 100, 55 148, 80 148
+             S 105 52, 130 52
+             S 155 132, 180 132
+             S 205 76, 230 76" />
+  </g>
+
+  <!-- wordmark -->
+  <text class="word" x="270" y="122">
+    <tspan class="w-main">cross</tspan><tspan fill="#66d9ce">t</tspan><tspan class="w-main">al</tspan><tspan fill="#c792ea">k</tspan>
+  </text>
+</svg>

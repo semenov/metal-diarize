@@ -1,4 +1,6 @@
-# crosstalk
+<p align="center">
+  <img src="logo.svg" alt="crosstalk" width="520">
+</p>
 
 **Turn any recording into a transcript that knows who said what — fast, on your Mac.**
 
